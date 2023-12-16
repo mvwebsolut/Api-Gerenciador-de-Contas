@@ -1,11 +1,10 @@
-import uvicorn
-from fastapi import FastAPI
+import sys, asyncio
 
-from conta_pagar_receber import router
+if sys.platform == "win32" and (3, 8, 0) <= sys.version_info < (3, 9, 0):
+    asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
+
+from fastapi import FastAPI
+from app.contas import api_router
 
 app = FastAPI()
-
-app.include_router(router)
-
-if __name__ == "__main__":
-    uvicorn.run(app)
+app.include_router(api_router)

@@ -1,5 +1,5 @@
 from fastapi import APIRouter
 
-router = APIRouter(prefix='/conta-pagar-receber')
+api_router = APIRouter(prefix='/contas')
 
 from .routes import *
